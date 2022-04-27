@@ -1,0 +1,32 @@
+<main class="todoapp">
+  <header class="header">
+    <h1>todos</h1>
+    <form enctype="application/x-www-form-urlencoded" role="form" (submit)="updateData()" novalidate>
+      <input class="new-todo" [(ngModel)]="addItem" placeholder="What needs to be done" autofocus>
+    </form>
+  </header>
+  <section class="main">
+    <app-complete-all></app-complete-all>
+    <app-todos-list [data]="data" [currentEditing]="currentEditing"></app-todos-list>
+  </section>
+  <footer class="footer" *ngIf="totalCount > 0">
+    <span class="todo-count">
+      {{remainingCount}} items left
+    </span>
+    <ul class="filters">
+      <li >
+        <a (click)="updateFilter('All')" [ngClass]="{'selected': selectedMode === 'All'}">All</a>
+      </li>
+      <li>
+        <a (click)="updateFilter('Active')"  [ngClass]="{'selected': selectedMode === 'Active'}">Active</a>
+      </li>
+      <li>
+        <a (click)="updateFilter('Completed')"  [ngClass]="{'selected': selectedMode === 'Completed'}">Completed</a>
+      </li>
+    </ul>
+    <button (click)="removeCompleted()" class="clear-completed">Clear completed</button>
+  </footer>
+</main>
+<footer class="info">
+  <p>Double-click to edit a todo</p>
+</footer>

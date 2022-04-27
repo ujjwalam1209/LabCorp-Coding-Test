@@ -1,0 +1,12 @@
+<ul class="todo-list">
+  <li [ngClass]="{'completed': item.completed, 'editing': i === currentEditing}" *ngFor="let item of data; let i = index">
+    <div class="view">
+      <input (change)="updateCompleted(i)" [checked]="item.completed" class="toggle" type="checkbox" />
+      <label (dblclick)="updateEditing(i)">
+        {{item.text}}
+      </label>
+      <button class="destroy" (click)="removeItem(i)"></button>
+    </div>
+    <input *ngIf="i === currentEditing" [(ngModel)]="currentEditText" (focus)="endFocus($event)" class="edit" (blur)="updateValue(i)" />
+  </li>
+</ul>
